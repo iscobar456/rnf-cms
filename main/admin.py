@@ -1,3 +1,5 @@
+from headless_cms.admin import auto_admins
 from django.contrib import admin
+from main.models import Post, PostImage
 
-# Register your models here.
+auto_admins([Post, PostImage])

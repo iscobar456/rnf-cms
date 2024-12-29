@@ -1,4 +1,6 @@
 static
 .env
+*/migrations
+db.sqlite3
 
 *.pyc
