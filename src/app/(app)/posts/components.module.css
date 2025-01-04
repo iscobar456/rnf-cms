@@ -1,0 +1,40 @@
+.postList {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.postCard {
+    position: relative;
+    flex-grow: 1;
+    background-color: var(--secondary-light);
+}
+
+.postCardImage {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 300px;
+}
+
+.postCardImage img {
+    object-fit: cover;
+}
+
+.postCardInfo {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    font-family: var(--font-open-sans);
+}
+
+.postCardInfo p {
+    font-size: 1rem;
+}
+
+.postCardInfo h3 {
+    font-family: var(--font-open-sans);
+    font-size: 1.5rem;
+    font-weight: normal;
+}
