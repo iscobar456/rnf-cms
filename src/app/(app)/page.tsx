@@ -1,11 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from './page.module.css'
-import { DonateButton } from './components'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { PostList, DeepPost } from './posts/components'
 
-export async function fetchPosts() {
+async function fetchPosts() {
   const payload = await getPayload({ config })
   const posts = await payload.find({
     collection: 'posts',
@@ -61,13 +61,30 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className={styles.donateSection}>
+      <section id="donate" className={styles.donateSection}>
         <p>
           Your donations make our work possible.<br></br>
           Every contribution goes towards early childhood educational expenses<br></br>
           or professional development opportunities for single mothers.
         </p>
-        <DonateButton />
+        <Link href="" className={styles.donateButton}>
+          Donate on PayPal
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11z"
+            />
+          </svg>
+        </Link>
+        <Link href="" className={styles.donateButton}>
+          Donate on GoFundMe
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11z"
+            />
+          </svg>
+        </Link>
       </section>
     </div>
   )

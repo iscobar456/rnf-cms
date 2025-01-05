@@ -31,6 +31,10 @@ export const Posts: CollectionConfig = {
       unique: true,
     },
     {
+      name: 'excerpt',
+      type: 'text',
+    },
+    {
       name: 'author',
       type: 'relationship',
       relationTo: 'users',

@@ -1,12 +1,12 @@
 .postList {
     display: flex;
-    justify-content: space-between;
-    gap: 2rem;
+    flex-wrap: wrap;
+    gap: 3rem;
 }
 
 .postCard {
     position: relative;
-    flex-grow: 1;
+    width: 240px;
     background-color: var(--secondary-light);
 }
 

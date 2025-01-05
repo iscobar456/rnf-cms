@@ -105,6 +105,7 @@ export interface Post {
   id: number;
   isDraft?: boolean | null;
   title: string;
+  excerpt?: string | null;
   author?: (number | null) | User;
   category: number | PostCategory;
   featuredImage: number | Media;
@@ -243,6 +244,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface PostsSelect<T extends boolean = true> {
   isDraft?: T;
   title?: T;
+  excerpt?: T;
   author?: T;
   category?: T;
   featuredImage?: T;
