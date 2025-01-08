@@ -4,6 +4,10 @@
   gap: 1.66rem;
   width: 100%;
   border-bottom: 1px solid var(--gray);
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 999;
 }
 
 .brand {

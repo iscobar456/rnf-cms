@@ -85,6 +85,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -109,7 +110,7 @@ export interface Post {
   author?: (number | null) | User;
   category: number | PostCategory;
   featuredImage: number | Media;
-  content?: {
+  content: {
     root: {
       type: string;
       children: {
@@ -123,7 +124,7 @@ export interface Post {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
+  };
   datePublished?: string | null;
   urlSlug: string;
   updatedAt: string;
@@ -225,6 +226,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

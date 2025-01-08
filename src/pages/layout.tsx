@@ -1,7 +1,8 @@
-import type { Metadata } from 'next'
+// import type { Metadata } from 'next'
 import { Open_Sans, Oswald } from 'next/font/google'
 import Link from 'next/link'
 import Image from 'next/image'
+import Logo from '../../public/img/rnf_logo_3.png'
 import './globals.css'
 import styles from './layout.module.css'
 
@@ -15,18 +16,18 @@ const oswald = Oswald({
   subsets: ['latin'],
 })
 
-export const metadata: Metadata = {
-  title: 'Rwanda Nurture Foundation',
-  description:
-    'The Rwanda Nurture Foundation focuses on community needs by helping single mothers learn skills that enhance family well-being',
-}
+// export const metadata: Metadata = {
+//   title: 'Rwanda Nurture Foundation',
+//   description:
+//     'The Rwanda Nurture Foundation focuses on community needs by helping single mothers learn skills that enhance family well-being',
+// }
 
 function Navbar() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.brand}>
         <Link href="/" className={styles.navLogo}>
-          <Image src="/img/rnf_logo_3.png" fill alt="Rwanda Nurture Foundation logo" />
+          <Image src={Logo} fill alt="Rwanda Nurture Foundation logo" />
         </Link>
         <h1>Rwanda Nurture Foundation</h1>
       </div>
@@ -53,7 +54,7 @@ function Footer() {
       <div>
         <div className={styles.brand}>
           <div className={styles.footerLogo}>
-            <Image src="/img/rnf_logo_3.png" fill alt="Rwanda Nurture Foundation logo" />
+            <Image src={Logo} fill alt="Rwanda Nurture Foundation logo" />
           </div>
           <h3>Rwanda Nurture Foundation</h3>
           <div className={styles.footerSocials}>
@@ -130,12 +131,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${openSans.variable} ${oswald.variable}`}>
-        <Navbar />
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <div className={`${openSans.variable} ${oswald.variable}`}>
+      <Navbar />
+      {children}
+      <Footer />
+    </div>
   )
 }
