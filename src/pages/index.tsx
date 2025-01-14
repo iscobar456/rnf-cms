@@ -3,11 +3,11 @@ import headerImage from '../../public/img/header-background.jpg'
 import aboutUsImage from '../../public/img/about-us.jpeg'
 import Link from 'next/link'
 import styles from './page.module.css'
-import { PostList, DeepPost } from './posts/components'
+import { PostList, DeepPost } from '../components/posts/components'
 import RootLayout from './layout'
 
 export async function getStaticProps() {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+  const baseUrl = process.env.API_BASE_URL
   const req = await fetch(`${baseUrl}/api/posts?depth=2`)
   const data = await req.json()
   const posts = data.docs as DeepPost[]

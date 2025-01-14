@@ -1,4 +1,4 @@
-import { DeepPost, PostList, PostCardProps } from './components'
+import { DeepPost, PostList, PostCardProps } from '../../components/posts/components'
 import styles from './page.module.css'
 import Link from 'next/link'
 import { Media } from '@/payload-types'
@@ -12,10 +12,11 @@ interface FeaturedSectionProps {
 }
 
 function FeaturedSection({ urlSlug, featuredImage, excerpt, title }: FeaturedSectionProps) {
+  const mediaBaseUrl = process.env.MEDIA_BASE_URL + '/media/';
   return (
     <div className={styles.featuredSection}>
       <Link href={`/posts/${urlSlug}`} className={styles.featuredImage}>
-        <img src={featuredImage.url ?? ''} alt={featuredImage.alt} />
+        <img src={mediaBaseUrl + featuredImage.filename} alt={featuredImage.alt} />
       </Link>
       <div className={styles.featuredInfo}>
         {/* <p className={styles.featuredLabel}>Featured</p> */}
@@ -29,8 +30,8 @@ function FeaturedSection({ urlSlug, featuredImage, excerpt, title }: FeaturedSec
 }
 
 export async function getStaticProps() {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-  const req = await fetch(`${baseUrl}/api/posts?depth=2`)
+  const baseUrl = process.env.API_BASE_URL
+  const req = await fetch(baseUrl + 'api/posts?depth=2')
   const data = await req.json()
   const posts = data.docs as DeepPost[]
 
