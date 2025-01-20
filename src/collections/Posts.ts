@@ -1,6 +1,7 @@
 import { BeforeChangeHook } from 'node_modules/payload/dist/collections/config/types'
 import type { CollectionConfig } from 'payload'
-import { slugify } from '@/utils/slugify'
+import { slugify } from '@/logic/slugify'
+import { writeIndexProps } from '@/logic/buildData'
 
 const updateDatePublished: BeforeChangeHook = async ({ data, originalDoc }) => {
   if (originalDoc.isDraft && !data.isDraft) {
@@ -78,16 +79,17 @@ export const Posts: CollectionConfig = {
   ],
   hooks: {
     beforeChange: [updateDatePublished, generateSlug],
+    afterChange: [writeIndexProps],
   },
   access: {
     read: ({ req: { user } }) => {
       return user
         ? true
         : {
-            isDraft: {
-              equals: false,
-            },
-          }
+          isDraft: {
+            equals: false,
+          },
+        }
     },
   },
 }

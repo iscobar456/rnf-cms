@@ -6,7 +6,9 @@ import { DeepPost } from '../../components/posts/components'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import RootLayout from '../layout'
-import { formatDate } from '@/utils/formatDate'
+import { formatDate } from '@/logic/formatDate'
+import Image from 'next/image'
+import { as } from 'node_modules/@faker-js/faker/dist/airline-BnpeTvY9'
 
 interface PostStaticPropsContext extends GetStaticPropsContext {
   params: {
@@ -106,12 +108,13 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({ className }) => {
 }
 
 export default function PostPage({ post }: PostProps) {
+  const mediaBaseUrl = process.env.MEDIA_BASE_URL
   return (
     <RootLayout>
       <article className={styles.postPage}>
         <div className={styles.postHeading}>
           <div className={styles.postHeadingImage}>
-            <img src={post.featuredImage.url ?? ''} alt={post.featuredImage.alt} />
+            <Image src={post.featuredImage.url as string} width={1920} height={600} alt={post.featuredImage.alt} />
           </div>
           <h1>{post.title}</h1>
           <p>{formatDate(post.datePublished)}</p>

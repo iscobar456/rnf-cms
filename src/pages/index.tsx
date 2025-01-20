@@ -5,17 +5,18 @@ import Link from 'next/link'
 import styles from './page.module.css'
 import { PostList, DeepPost } from '../components/posts/components'
 import RootLayout from './layout'
+import { promises as fs } from 'fs'
+import path from 'path'
 
 export async function getStaticProps() {
-  const baseUrl = process.env.API_BASE_URL
-  const req = await fetch(`${baseUrl}/api/posts?depth=2`)
-  const data = await req.json()
-  const posts = data.docs as DeepPost[]
+  const filePath = path.join(process.cwd(), 'data/index_props.json')
+  const fileData = await fs.readFile(filePath, 'utf8')
+  const propsData = JSON.parse(fileData).docs.slice(0, 4)
 
   return {
     props: {
-      posts: posts.slice(0, 4),
-    },
+      posts: propsData
+    }
   }
 }
 

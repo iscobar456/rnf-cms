@@ -42,6 +42,7 @@ export default buildConfig({
       collections: {
         media: {
           prefix: 'media',
+          generateFileURL: ({ filename }) => process.env.MEDIA_BASE_URL + '/media/' + filename
         },
       },
       bucket: process.env.S3_BUCKET as string,

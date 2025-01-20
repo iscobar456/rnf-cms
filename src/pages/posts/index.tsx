@@ -3,6 +3,9 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import { Media } from '@/payload-types'
 import RootLayout from '../layout'
+import path from 'path'
+import { promises as fs } from 'fs'
+import Image from 'next/image'
 
 interface FeaturedSectionProps {
   title: string
@@ -12,11 +15,10 @@ interface FeaturedSectionProps {
 }
 
 function FeaturedSection({ urlSlug, featuredImage, excerpt, title }: FeaturedSectionProps) {
-  const mediaBaseUrl = process.env.MEDIA_BASE_URL + '/media/';
   return (
     <div className={styles.featuredSection}>
       <Link href={`/posts/${urlSlug}`} className={styles.featuredImage}>
-        <img src={mediaBaseUrl + featuredImage.filename} alt={featuredImage.alt} />
+        <Image src={featuredImage.url as string} width={featuredImage.width as number} height={featuredImage.height as number} alt={featuredImage.alt} />
       </Link>
       <div className={styles.featuredInfo}>
         {/* <p className={styles.featuredLabel}>Featured</p> */}
@@ -30,10 +32,9 @@ function FeaturedSection({ urlSlug, featuredImage, excerpt, title }: FeaturedSec
 }
 
 export async function getStaticProps() {
-  const baseUrl = process.env.API_BASE_URL
-  const req = await fetch(baseUrl + 'api/posts?depth=2')
-  const data = await req.json()
-  const posts = data.docs as DeepPost[]
+  const filePath = path.join(process.cwd(), 'data/index_props.json')
+  const fileData = await fs.readFile(filePath, 'utf8')
+  const posts = JSON.parse(fileData).docs as DeepPost[]
 
   return {
     props: {

@@ -22,11 +22,10 @@ export interface PostListProps {
 }
 
 export const PostCard: React.FC<PostCardProps> = ({ featuredImage, category, urlSlug, title }) => {
-  const mediaBaseUrl = process.env.MEDIA_BASE_URL + '/media/';
   return (
     <div className={styles.postCard}>
       <Link href={`/posts/${urlSlug}`} className={styles.postCardImage}>
-        <img src={mediaBaseUrl + featuredImage.filename} alt={featuredImage.alt} />
+        <Image src={featuredImage.url as string} width={260} height={360} alt={featuredImage.alt} />
       </Link>
       <div className={styles.postCardInfo}>
         <p>{category.name}</p>
